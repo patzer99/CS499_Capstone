@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancement One | Software Design and Engineering</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Enhancement One</h1>
+    <h2>Software Design and Engineering</h2>
+    <p>CS 499 Computer Science Capstone</p>
+</header>
+
+<main>
+<section>
+    <h2>Enhancement One Narrative</h2>
+
+    <h3>1. Briefly describe the artifact. What is it? When was it created?</h3>
+
+    <p>The artifact I selected for my CS 499 capstone is an inventory application that I originally created during my CS 360 Mobile Architecture and Programming course. The application was developed in Android Studio using Java and SQLite and was designed to provide a basic way for a user to manage inventory from an Android device. The original application included account creation and login, the ability to add and remove inventory items, persistent storage using a SQLite database, and low-inventory notifications. I selected this application as my capstone artifact because it gave me a working project that I could go back to, review with more experience, and improve rather than starting over with something new. For this first enhancement, I focused specifically on the software design and engineering side of the application.</p>
+
+    <h3>2. Justify the inclusion of the artifact in your ePortfolio. Why did you select this item? What specific components showcase your skills and abilities in software development? How was the artifact improved?</h3>
+
+    <p>I selected this inventory application for my ePortfolio because it gives me a good opportunity to show the difference between getting an application to work and going back later to make that application better. When I originally created the application, it could add, display, and delete inventory items, but after reviewing the code for my capstone, I noticed that the inventory workflow was incomplete. A user could add an item or delete one, but there was no way to edit an existing item without deleting it and starting over.</p>
+
+    <p>For this enhancement, I added an update operation to the SQLite database and created an Edit option for each inventory item. When Edit is selected, the application keeps track of that item's ID and loads its current name and quantity into the input fields. The user can make a change and update that same database record instead of creating another item. This completed the application's basic CRUD functionality by supporting create, read, update, and delete operations.</p>
+
+    <p>I also improved the input validation. In the original application, the quantity only had to be nonempty before the program attempted to convert it into an integer. This meant invalid input could cause problems. The enhanced version checks for a missing item name, a blank quantity, nonnumeric input, zero, and negative quantities before anything is saved. I also made sure the existing low-inventory feature continued to work with the new editing process. For example, if an item's quantity is changed from 10 to 3 and the low-inventory threshold is 5, the application still produces the low-inventory alert.</p>
+
+    <p>I think these changes showcase my growth in software development because I was not just focused on adding another feature. I had to look at how the existing parts of the application worked together and make the new functionality fit into that design without breaking what was already working. The result is a more complete and reliable inventory application while still keeping the original purpose of the project intact.</p>
+
+    <h3>3. Did you meet the course outcomes you planned to meet with this enhancement in Module One? Do you have any updates to your outcome-coverage plans?</h3>
+
+    <p>I believe this enhancement made the progress I planned toward the course outcomes I identified in Module One, especially outcomes three and four. For outcome three, I had to look at the original design of the application, identify where the inventory workflow was incomplete, and develop a solution that worked with the existing structure. Adding the update functionality required more than placing an Edit button on the screen. I had to keep track of the correct inventory record, validate the user's changes, update that specific record in SQLite, and then reload the inventory so the updated information was displayed correctly.</p>
+
+    <p>This enhancement also supported outcome four because I used the tools and techniques I have learned throughout the program to improve an existing computing solution. I worked in Android Studio with Java and SQLite, tested each change as I made it, and then tested the completed application on a physical Android device. One thing that became important during the enhancement was making sure the new functionality did not break features that were already working. After completing the changes, I tested adding, editing, deleting, invalid input, low-inventory alerts, and data persistence after restarting the application.</p>
+
+    <p>At this point, I do not see a need to change my original outcome-coverage plan. This enhancement gave me the software design and engineering progress I expected from outcomes three and four. I still plan to use the later enhancements to demonstrate other areas of the course outcomes, rather than trying to force everything into this one enhancement.</p>
+
+    <h3>4. Reflect on the process of enhancing and modifying the artifact. What did you learn as you were creating it and improving it? What challenges did you face?</h3>
+
+    <p>Working through this enhancement helped me understand the difference between adding code and actually improving an existing application. At first, adding an Edit button seemed like it would be a simple change, but once I started working through it, I realized that several parts of the application had to work together. The application needed to know which inventory item was selected, remember that item's ID, load the existing information, validate the new information, update the correct SQLite record, and then refresh the inventory. This gave me a better understanding of how the user interface, application logic, and database interact with each other.</p>
+
+    <p>One challenge I ran into was that the first version of the Edit workflow was still adding another item instead of updating the existing one. For instance, changing a PlayStation 5 quantity from 10 to 9 resulted in two PlayStation 5 entries. Looking at what was happening helped me realize that the Edit button was loading the information correctly, but the save process was still calling the original addItem() method. I corrected this by tracking the ID of the item being edited and using that ID with the new updateItem() database method. That was a good example of debugging the actual flow of the application instead of assuming the problem was with the database.</p>
+
+    <p>I also ran into an issue getting Android Studio to recognize the project correctly. At first, the application module and Gradle tools were not appearing because I had opened the folder above the actual Android project directory. Once I opened the correct project root and allowed Gradle to sync, I was able to build and run the application normally. Experiences like this are important because not every problem in software development comes directly from the code.</p>
+
+    <p>The biggest thing I learned from this enhancement was the value of making changes in small steps and testing along the way. Instead of changing everything at once, I added the database update operation, improved the validation, added the Edit workflow, connected it to the database, and tested each part before moving forward. Once everything was complete, I tested the full application again to make sure adding, editing, deleting, invalid input, low-inventory alerts, and data persistence were all still working. This process gave me more confidence in working with an existing codebase and improving it without breaking functionality that was already there.</p>
+</section>
+
+<section>
+    <h2>Original Narrative Document</h2>
+    <p>
+        <a href="narratives/SmithB_Milestone%20Two.docx">
+            Download Enhancement One Narrative
+        </a>
+    </p>
+</section>
+
+<section>
+    <p>
+        <a href="index.html">Back to ePortfolio Homepage</a>
+    </p>
+</section>
+</main>
+
+</body>
+</html>

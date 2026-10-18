@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancement Two | Algorithms and Data Structures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Enhancement Two</h1>
+    <h2>Algorithms and Data Structures</h2>
+    <p>CS 499 Computer Science Capstone</p>
+</header>
+
+<main>
+<section>
+    <h2>Enhancement Two Narrative</h2>
+
+    <h3>1. Briefly describe the artifact. What is it? When was it created?</h3>
+
+    <p>The artifact I selected for my CS 499 capstone is an inventory application that I originally created during my CS 360 Mobile Architecture and Programming course. The application was developed in Android Studio using Java and SQLite and was designed to give a user a basic way to manage inventory from an Android device. The original application included account creation and login, the ability to add and remove inventory items, persistent storage using a SQLite database, and low-inventory notifications.</p>
+
+    <p>I selected this application as my capstone artifact because it gives me a working project that I can continue improving as I move through each enhancement. During the first enhancement, I focused on software design and engineering by completing the CRUD functionality, adding the Edit/Update workflow, and improving input validation. For this second enhancement, I focused specifically on algorithms and data structures by improving how the application stores, searches, sorts, filters, and displays inventory data.</p>
+
+    <h3>2. Justify the inclusion of the artifact in your ePortfolio. Why did you select this item? What specific components showcase your skills and abilities in software development? How was the artifact improved?</h3>
+
+    <p>I selected this inventory application for my ePortfolio because it continues to give me a good way to show how a basic working application can be improved as my skills develop. After completing the software design and engineering enhancement, the application could handle the basic CRUD operations, but there was still not much the user could do with the inventory once the number of items started to grow. The inventory was basically being retrieved from SQLite through a Cursor and displayed in the order it was returned. There was no way to search through the inventory, sort the items, or quickly identify the items that were running low.</p>
+
+    <p>For this enhancement, I first changed how the application works with the inventory data after it is retrieved from the database. I created an InventoryItem class to represent an individual inventory record and used an ArrayList&lt;InventoryItem&gt; to hold the inventory in memory. This gave the application a data structure that I could work with instead of immediately taking the information from the Cursor and putting it on the screen. I also separated loading the inventory from displaying it, which allowed the application to process the collection before deciding what should be shown to the user.</p>
+
+    <p>From there, I added three features that demonstrate my work with algorithms and data structures. The first was a case-insensitive, partial-name search that uses a linear search through the ArrayList. In the worst case, every item may need to be checked, giving the search a time complexity of O(n). I also added a low-stock filter that checks each inventory item against the user's low-inventory threshold. This also has O(n) time complexity because each item may need to be examined. Finally, I added the ability to sort the inventory from the lowest quantity to the highest. The sorting operation uses Java's list sorting functionality and has O(n log n) time complexity.</p>
+
+    <p>One design decision I made was to create a copy of the inventory ArrayList before sorting it. This uses some additional memory, but it allows the application to display a sorted version without permanently changing the order of the main inventory collection. I think this enhancement showcases my growth because I had to think beyond whether a feature simply worked. I had to consider how the data should be represented, how the algorithms would process that data, their efficiency as the amount of inventory grows, and the trade-offs involved in the choices I made. The result is an inventory application that is easier to use and can do more with the data it already stores.</p>
+
+    <h3>3. Did you meet the course outcomes you planned to meet with this enhancement in Module One? Do you have any updates to your outcome-coverage plans?</h3>
+
+    <p>I believe this enhancement made the progress I planned toward the course outcomes I identified in Module One, especially outcome three. This outcome focuses on designing and evaluating computing solutions using algorithmic principles while also considering the trade-offs involved in data structures and algorithms. That became the main focus of this enhancement.</p>
+
+    <p>Instead of continuing to work directly from the database Cursor when displaying inventory, I created an InventoryItem class and used an ArrayList to hold the inventory records in memory. From there, I was able to implement a linear search, a low-stock filter, and quantity sorting. I also looked at the time complexity of those operations instead of only focusing on whether they worked. The search and low-stock filter are O(n) because each item may need to be checked, while the sorting operation is O(n log n). I also had to consider the trade-off of creating a copy of the ArrayList before sorting it. This requires some additional memory, but it keeps the main inventory collection unchanged while allowing the user to view the sorted results.</p>
+
+    <p>I also continued to make progress toward outcome four because I used Java, Android Studio, SQLite, and testing to add useful functionality to an existing application. After completing the enhancement, I tested the new search, sorting, and filtering features along with the functionality from the previous enhancement. All nine final tests passed, including adding, editing, deleting, input validation, low-inventory alerts, persistence, searching, sorting, and low-stock filtering.</p>
+
+    <p>At this point, I do not see a reason to change my original outcome-coverage plan. This enhancement gave me a much stronger opportunity to demonstrate outcome three through actual decisions involving algorithms, data structures, efficiency, and trade-offs. I still plan to use the final database enhancement to cover the remaining areas of my original plan rather than trying to force every course outcome into this enhancement.</p>
+
+    <h3>4. Reflect on the process of enhancing and modifying the artifact. What did you learn as you were creating it and improving it? What challenges did you face?</h3>
+
+    <p>Working through this enhancement helped me understand algorithms and data structures in a more practical way. When I first looked at adding search, sorting, and filtering, it seemed like I could just add those features directly to the application. Once I started looking at the existing code, though, I realized there was another problem that needed to be handled first. The inventory was being retrieved from SQLite through a Cursor and then immediately used to build the rows on the screen. That worked for displaying the inventory, but it did not give me a good structure for manipulating the data before it was displayed.</p>
+
+    <p>The biggest change for me was creating the InventoryItem class and moving the inventory records into an ArrayList. This changed the flow from basically going straight from the database to the screen into a process where the database records are loaded into a collection, processed by an algorithm, and then displayed. I also separated loadInventory() from displayInventory(). Once I did that, the rest of the enhancement made a lot more sense because search, sort, and filter could each work with the same collection and then send their results to the same display method.</p>
+
+    <p>Another thing I learned was that there is more to an algorithm than getting the correct result. I had to think about what happens as the amount of data grows. With the linear search and low-stock filter, I know that the application may have to check every inventory item, which gives those operations O(n) time complexity. The quantity sort is O(n log n), and I also chose to sort a copy of the ArrayList instead of changing the main collection. That decision uses a little more memory, but it keeps the original inventory collection intact. Working through those decisions helped make Big O and algorithmic trade-offs feel more connected to something I was actually building instead of just being concepts from a textbook.</p>
+
+    <p>Just like the first enhancement, I tried to make these changes in small steps instead of changing everything at once. I created the new data structure first and made sure the existing application still worked. Then I added and tested search, followed by sorting and the low-stock filter. After each step worked, I moved to the next one. Once the enhancement was complete, I went back and tested the entire application again. All nine final tests passed, including the functionality from the previous enhancement and the new algorithms and data structures features. The biggest thing I took away from this enhancement is that sometimes adding a new feature means changing how the application handles its data first. Once that foundation was in place, the algorithms became much easier to build, understand, and test.</p>
+</section>
+
+<section>
+    <h2>Original Narrative Document</h2>
+    <p>
+        <a href="narratives/SmithB_Milestone%20Three.docx">
+            Download Enhancement Two Narrative
+        </a>
+    </p>
+</section>
+
+<section>
+    <p>
+        <a href="index.html">Back to ePortfolio Homepage</a>
+    </p>
+</section>
+</main>
+
+</body>
+</html>

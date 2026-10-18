@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhancement Three | Databases</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Enhancement Three</h1>
+    <h2>Databases</h2>
+    <p>CS 499 Computer Science Capstone</p>
+</header>
+
+<main>
+
+<section>
+    <h2>Enhancement Three Narrative</h2>
+
+    <h3>1. Briefly describe the artifact. What is it? When was it created?</h3>
+
+    <p>The artifact I have been using throughout my CS 499 capstone is an inventory application that I originally created in my CS 360 Mobile Architecture and Programming course. I built the application in Android Studio using Java and SQLite. The original application allowed a user to create an account, log in, add and remove inventory items, save the inventory in a database, and receive an alert when inventory was running low.</p>
+
+    <p>The application has changed quite a bit since I started this capstone. My first enhancement focused on making the application more complete by adding the missing Edit/Update operation and improving the validation. My second enhancement added search, sorting, and low-stock filtering and changed how the application works with inventory data after getting it from the database. For this third enhancement, I came back to the database itself. I wanted to improve what information the application keeps and also address a security problem with how passwords were being stored.</p>
+
+    <h3>2. Justify the inclusion of the artifact in your ePortfolio. Why did you select this item? What specific components showcase your skills and abilities in software development? How was the artifact improved?</h3>
+
+    <p>One reason I like using this application in my ePortfolio is because you can actually see the progress from where I started to where I am now. The original application worked, but each time I came back to it during this course, I found something else that could be improved. This time I noticed something pretty simple about the inventory database. It could tell me what was in the inventory right now, but it could not really tell me what happened before that.</p>
+
+    <p>For example, if I added an Xbox with a quantity of eight, changed the quantity later, and eventually deleted it, the original database would only show the current result. Once the Xbox was deleted, that information was basically gone. I wanted the application to remember those changes, so I added a separate inventory history table. Now when an item is added, updated, or deleted, the application can keep a record of the item, the action that happened, the quantity, and when it happened. The regular inventory table still tells me what I have right now, while the history table gives me a record of what happened along the way.</p>
+
+    <p>The other improvement came from looking at the login system again. The login worked, but the password was being stored directly in the database. Earlier in the program I probably would have looked at the fact that the user could create an account and successfully log in and said, “It works.” Now I know that is not the only question I should be asking. I changed the application so the password is hashed before it is stored. I then tested it by creating an account and looking at what was actually saved in the database. Instead of seeing the password that I typed, I saw the hashed value. I could still log in using my normal password, so I knew the security change worked without breaking the login system.</p>
+
+    <p>I think those two improvements show another side of my development skills. Search buttons, editing inventory, and low-stock alerts are things a user can actually see on the screen. This enhancement was different because most of the work happens behind the scenes. The user may never know that the application is keeping a history or that the password is being stored differently, but those changes still make the application better.</p>
+
+    <h3>3. Did you meet the course outcomes you planned to meet with this enhancement in Module One? Do you have any updates to your outcome-coverage plans?</h3>
+
+    <p>I believe I met the outcomes I was aiming for with this enhancement. Outcome four connects directly to the database work because I used Java, SQLite, and Android Studio to improve an existing application and give the database more useful functionality. Instead of only storing the current inventory, the application can now keep a history of changes that have happened to it.</p>
+
+    <p>I also think this enhancement gave me one of my strongest examples of outcome five, which focuses on developing a security mindset. What stood out to me about the password issue is that nothing looked broken from the user's point of view. The login worked before the enhancement, and it works after the enhancement. The difference is what is happening behind the scenes. Before, the actual password was sitting in the database. Now the stored value is a hash. That showed me that security is not always about fixing something that obviously does not work. Sometimes you have to look at something that works and ask whether it is working in a safe way.</p>
+
+    <p>I do not think I need to change my overall outcome plan. The three enhancements have ended up fitting together pretty well. The first one showed my software design and engineering work, the second one gave me a chance to work directly with algorithms and data structures, and this one gave me a chance to focus on databases and security. When I put everything together for the final ePortfolio, I think the progression of the application will help show what I have learned throughout the program.</p>
+
+    <h3>4. Reflect on the process of enhancing and modifying the artifact. What did you learn as you were creating it and improving it? What challenges did you face?</h3>
+
+    <p>The biggest thing I learned during this enhancement is that a database is more than just somewhere to save information. Before this, I mostly thought about it as, “I put something in the database, close the application, open it again, and my stuff is still there.” That is definitely part of it, but this enhancement made me think more about what information should still be there later and why.</p>
+
+    <p>The inventory history is probably the best example. The inventory table answers the question, “What do I have?” The history table answers a completely different question: “What happened?” That clicked for me once I started testing it. I could add an item, update it, delete it, and then look at the history and still see all three actions. Even though the item was gone from the current inventory, the record of what happened to it was still there. That made the purpose of keeping history a lot more real to me than just reading about database tables.</p>
+
+    <p>There were definitely a few bumps getting there. Android Studio's Database Inspector decided it did not want to cooperate when I tried to use it to check the history table. Instead of getting stuck on that, I used Logcat to verify what the application was actually storing. Once I got the filter working, I could see my ADD, UPDATE, and DELETE records along with their quantities and timestamps. I used a similar approach when testing the password change. I temporarily logged the stored password value so I could make sure I was seeing a hash and not the password I entered.</p>
+
+    <p>I also had one of those coding problems where the problem ended up being much smaller than it looked. While adding the temporary password test, Android Studio started throwing red errors around the Cursor code. At first it looked like something might be wrong with the Cursor or the database method. After going back through the code, the real problem was that I had placed the testing block outside of onCreate() because of where a closing brace was sitting. Moving that one brace fixed the problem. That was another reminder for me not to immediately assume the complicated part of the code is what broke.</p>
+
+    <p>Once everything was working, I went back through the whole application again. I tested account creation and login, adding, editing and deleting inventory, validation, low-inventory alerts, search, sorting, low-stock filtering, persistence, inventory history, and the password security change. Everything passed. I think that final test was especially important this time because this application has now gone through three different rounds of enhancements. I did not want to get to the end and have a new database feature working while something we built two weeks ago was broken.</p>
+
+    <p>Looking back at the three enhancements, I think that is probably the biggest thing this project has taught me. I am getting better at not just jumping into the code and changing everything at once. I have been making one change, testing it, figuring out what went wrong when something breaks, and then moving forward. The application is still a fairly simple inventory application, but there is a lot more going on underneath it now than when I originally created it. And for me, being able to understand why those changes make the application better is probably more important than just being able to say that I added them.</p>
+
+</section>
+
+<section>
+    <h2>Original Narrative Document</h2>
+
+    <p>
+        <a href="narratives/SmithB_Milestone%20Four.docx">
+            Download Enhancement Three Narrative
+        </a>
+    </p>
+</section>
+
+<section>
+    <p>
+        <a href="index.html">Back to ePortfolio Homepage</a>
+    </p>
+</section>
+
+</main>
+
+</body>
+</html>
